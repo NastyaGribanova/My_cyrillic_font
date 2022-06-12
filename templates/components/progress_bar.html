@@ -1,0 +1,67 @@
+<style>
+  .item-number {
+    display: inline-block;
+    background-color: #c4c4c4;
+    border-radius: 50%;
+    width: 1.6rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .is-complete .item-number,
+  .is-progress .item-number {
+    background-color: var(--color-blue);
+  }
+
+  .progress-bar {
+    display: flex;
+    list-style: none;
+    color: #949494;
+    margin: 0px;
+    margin-top: 2rem;
+    padding: 0px;
+  }
+
+  .progress-bar li {
+    width: 20%;
+  }
+
+  .progress-bar .is-complete {
+    color: #949494;
+    border-top: 2px solid var(--color-blue);
+  }
+
+  .progress-bar .is-progress {
+    color: #fff;
+    border-top: 2px solid var(--color-gray-disabled);
+  }
+
+  .progress-bar .is-inactive {
+    border-top: 2px solid var(--color-gray-disabled);
+  }
+
+  .progress-bar-content {
+    position: relative;
+    bottom: 1rem;
+  }
+</style>
+
+<ul class="progress-bar">
+  <li class="is-complete"></li>
+  {% for step in steps %} {% if actual_step == step.id %}
+  <li class="is-progress">{% elif actual_step < step.id %}</li>
+
+  <li class="is-inactive">{% elif actual_step > step.id %}</li>
+
+  <li class="is-complete">
+    {% endif %}
+    <div class="progress-bar-content">
+      <div class="item-number">{{ step.id }}</div>
+      <div>{{ step.name }}</div>
+    </div>
+  </li>
+  {% endfor %}
+  <li class="is-inactive"></li>
+</ul>

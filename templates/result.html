@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}Результат{% endblock title %} 
+
+{% block content %}
+<style>
+  .font-name {
+    color: var(--color-blue);
+    text-decoration-line: underline;
+  }
+
+  .font-example {
+    font-size: 1.5rem;
+  }
+
+  .row {
+    display: flex;
+    margin: 0rem 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid #e3e1e1;
+  }
+
+  .row .col-3 {
+    width: 75%;
+  }
+  .row .col-1 {
+    width: 25%;
+    margin: auto;
+    text-align: right;
+  }
+
+  .row a {
+    color: #fff;
+    background-color: var(--color-blue);
+    padding: 0.5rem 1rem;
+    text-decoration-line: none;
+  }
+</style>
+
+{% for font in fonts %}
+ <style>
+  @import url('https://fonts.googleapis.com/css2?family={{ font.name }}&display=swap');
+ </style>
+{% endfor %}
+
+	{% for font in fonts %}
+		<div class="row">
+			<div class="col-3">
+				<div class="font-name" title="{{ font.predict }}">{{ font.name }}</div>
+				<div class="font-example" {{ font.style }}>{{ font.example }}</div>
+			</div>
+			<div class="col-1">
+				<a href="https://fonts.google.com/?query={{ font.name }}" target="_blank">Скачать</a>
+			</div>
+		</div>
+	{% endfor %} 
+{% endblock content %}

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.css');
+
+:root {
+  --color-blue: #5f8ec6;
+  --color-gray-disabled: #e5e5e5;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  background-color: #212121;
+  font-family: PT Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: #fff;
+}
+
+main {
+  margin: 2rem;
+  border: 1px solid #e3e1e1;
+}

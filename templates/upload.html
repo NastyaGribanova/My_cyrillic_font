@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Загрузка файла{% endblock %}
+
+{% block content %}
+<style>
+  main:hover {
+    border: 1px solid var(--color-blue);
+  }
+
+  .upload-file {
+    text-align: center;
+    padding: 5rem;
+  }
+
+  .upload-file p {
+    font-size: 1.2rem;
+  }
+
+  .click-text {
+    text-decoration-line: underline;
+    color: var(--color-blue);
+    cursor: pointer;
+  }
+
+  .upload-file input[type="file"] {
+    display: none;
+  }
+</style>
+
+<form method="post" action="/crop" enctype="multipart/form-data">
+  <div class="upload-file"  id="dropzone" >
+    {% include 'components/icon_upload.html' %}
+    <p>
+      Перетащите изображение формата JPG или
+      <label class="click-text" for="upload-file-text">
+        Загрузите для распознавания шрифта
+      </label>
+      <input id="upload-file-text" type="file" name="file" class="dropzone-input"
+      accept=".jpg, .jpeg, .png" />
+    </p>
+  </div>
+</form>
+</body>
+<script>
+  var dropzone = document.querySelector('#dropzone');
+  var dropzone_input = dropzone.querySelector('#upload-file-text');
+
+  dropzone_input.onchange = function() {
+    document.forms[0].submit();
+  };
+
+  ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function(event) {
+    dropzone.addEventListener(event, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+
+  dropzone.addEventListener('drop', function(e) {
+    var files = e.dataTransfer.files;
+    dropzone_input.files = files;
+    document.forms[0].submit();
+
+  }, false);
+
+  dropzone.addEventListener('click', function(e) {
+    dropzone_input.click();
+  });
+
+
+
+
+</script>
+{% endblock %}

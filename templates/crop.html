@@ -1,0 +1,56 @@
+{% extends "base.html" %} 
+
+{% block title %}Обрезка{% endblock %} 
+
+{% block content %}
+<style>
+  button {
+    background-color: var(--color-blue);
+    border: none;
+    color: #fff;
+    background-color: var(--color-blue);
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+  }
+
+  form {
+    text-align: center;
+  }
+</style>
+
+<div style="max-height: 24rem">
+  <img id="image" src="data:image/png;base64, {{ image_string }}" />
+</div>
+
+<form action="/result" method="post">
+  <input type="text" name="crop_img" id="crop_img" hidden />
+  <button id="button">Далее</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.js"></script>
+<script>
+  var x1 = parseInt("{{ bbox.0 }}");
+  var y1 = parseInt("{{ bbox.1 }}");
+  var x2 = parseInt("{{ bbox.2 }}");
+  var y2 = parseInt("{{ bbox.3 }}");
+  window.addEventListener("DOMContentLoaded", function () {
+    var image = document.querySelector("#image");
+    var button = document.getElementById("button");
+    var crop_img = document.getElementById("crop_img");
+    
+    var cropper = new Cropper(image, {
+      ready: function (e) {
+        this.cropper.setData({ x: x1, y: y1, width: x2 - x1, height: y2 - y1 });
+      },
+    });
+
+    button.onclick = function () {
+      crop_img.value = cropper
+        .getCroppedCanvas()
+        .toDataURL("image/png")
+        .substr(22);
+      document.forms[0].submit();
+    };
+  });
+</script>
+{% endblock %}
