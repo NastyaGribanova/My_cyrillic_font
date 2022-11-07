@@ -5,23 +5,23 @@
 
 
 ## Description
-Это учебный проект, который создавался с целью демонстрации полученных навыков. 
-Сервис рассчитан на распознавание 10 шрифтов кириллицы на изображениях, так что пользователь сможет найти нужный или похожий шрифт с бесплатной лицензией. 
+This is a training project created to demonstrate the acquired skills.
+The service is designed to recognize 10 Cyrillic fonts in images, so that the user can find the desired or similar font, which has a free license.
 <p align="center">
 <img src="medias/gif.gif" width="100%"></p>
 
 
 ## About project
-Были сгенерированы изображения с учетом контраста фона и текста, который высчитывался по формуле цветового отличия стандарта cie76.
+There were images generated taking into account the contrast of the background and text, which was calculated using the cie76 standard color difference formula.
 <p align="center">
 <img src="medias/example.png" width="70%"></p>
 
-Для лучшего обучения моделей на изображения были добавлены панграммы - короткие тексты со всеми буквами алфавита. 
+Pangrams were added to the images for better training of models. Pangrams are short texts containing all the letters of the alphabet. 
 <p align="center">
 <img src="medias/example2.png" width="70%"></p>
 
-Были обучены три нейронные сети с архитектурами: LeNet5, ResNet18 и GoogleNet. Jupyter-ноутбуки с процессом обучения находятся в папках notebooks/models_*.
-<p>Лучшие результаты показала модель GoogleNet, поэтому она используется в итоговом варианте сервиса. Модель находится в папке models/</p>
+Three neural networks with architectures were trained: LeNet5, ResNet18 and GoogleNet. Jupyter notebooks with learning process are located in 'notebooks/models_*' folders.
+<p>The GoogleNet model showed the best results, so it is used in the final version of the service. The model is located in the 'models/' folder</p>
 
 ## Technologies
 <p align="center">
